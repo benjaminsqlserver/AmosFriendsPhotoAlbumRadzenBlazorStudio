@@ -1,0 +1,59 @@
+@page "/add-friend"
+
+<PageTitle>Add Friend</PageTitle>
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save Friend</RadzenAlert>
+        <RadzenTemplateForm TItem="AmosFriendsPhotoAlbum.Server.Models.ConData.Friend" Data="@friend" Visible="@(friend != null && canEdit)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="First Name" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@friend.FirstName" Name="FirstName" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="FirstName" Text="FirstName is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Last Name" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@friend.LastName" Name="LastName" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="LastName" Text="LastName is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Date Of Birth" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="MM/dd/yyyy" style="display: block; width: 100%" @bind-Value="@friend.DateOfBirth" Name="DateOfBirth" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="DateOfBirth" Text="DateOfBirth is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Gender" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@gendersForGenderID" TextProperty="GenderName" ValueProperty="GenderID" AllowClear=true
+                          style="display: block; width: 100%" @bind-Value="@friend.GenderID" Name="GenderID"
+                        SelectedValue=@gendersForGenderIDValue Count=@gendersForGenderIDCount LoadData=@gendersForGenderIDLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Email Address" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@friend.EmailAddress" Name="EmailAddress" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="EmailAddress" Text="EmailAddress is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Phone Number" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@friend.PhoneNumber" Name="PhoneNumber" />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\AmosFriendsPhotoAlbum\\Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "C:\\AmosFriendsPhotoAlbum\\Client\\obj\\Debug\\net8.0\\compressed\\gva33iq085.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.AmosFriendsPhotoAlbum.Client.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.AmosFriendsPhotoAlbum.Client.props",
+      "PackagePath": "build\\AmosFriendsPhotoAlbum.Client.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.AmosFriendsPhotoAlbum.Client.props",
+      "PackagePath": "buildMultiTargeting\\AmosFriendsPhotoAlbum.Client.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.AmosFriendsPhotoAlbum.Client.props",
+      "PackagePath": "buildTransitive\\AmosFriendsPhotoAlbum.Client.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

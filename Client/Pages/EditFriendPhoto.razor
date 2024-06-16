@@ -1,0 +1,65 @@
+@page "/edit-friend-photo"
+
+<PageTitle>Edit FriendPhoto</PageTitle>
+<RadzenRow>
+    <RadzenColumn SizeMD="9">
+    <RadzenLabel style="font-weight: bold" Text="Item no longer available." Visible="@(!canEdit)" />
+    </RadzenColumn>
+    <RadzenColumn SizeMD="3">
+    <RadzenButton ButtonStyle="ButtonStyle.Secondary" style="margin-bottom: 20px" Text="Close" Visible="@(!canEdit)" Click="@CancelButtonClick" />
+    </RadzenColumn>
+</RadzenRow>
+<RadzenRow>
+    <RadzenColumn SizeMD="9">
+    <RadzenLabel style="font-weight: bold" Text="Another user has made conflicting changes to one or more of the fields you have modified. Please reload." Visible="@hasChanges" />
+    </RadzenColumn>
+    <RadzenColumn SizeMD="3">
+    <RadzenButton ButtonStyle="ButtonStyle.Secondary" Icon="autorenew" style="margin-bottom: 20px" Text="Reload" Visible="@hasChanges" Click="@ReloadButtonClick" />
+    </RadzenColumn>
+</RadzenRow>
+
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save FriendPhoto</RadzenAlert>
+        <RadzenTemplateForm TItem="AmosFriendsPhotoAlbum.Server.Models.ConData.FriendPhoto" Data="@friendPhoto" Visible="@(friendPhoto != null && canEdit)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="Friend" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@friendsForFriendID" TextProperty="FirstName" ValueProperty="FriendID" AllowClear=true
+                          style="display: block; width: 100%" @bind-Value="@friendPhoto.FriendID" Name="FriendID"
+                        SelectedValue=@friendsForFriendIDValue Count=@friendsForFriendIDCount LoadData=@friendsForFriendIDLoadData >
+                         <Columns>
+   <RadzenDropDownDataGridColumn Property="FirstName" Title="First Name">
+   </RadzenDropDownDataGridColumn>
+   <RadzenDropDownDataGridColumn Property="LastName" Title="Last Name">
+   </RadzenDropDownDataGridColumn>
+ </Columns>
+                        </RadzenDropDownDataGrid>
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Photo" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenFileInput @bind-Value="@(friendPhoto.PhotoURL)" Name="FriendPhoto" TValue="string">
+</RadzenFileInput>
+                  </ChildContent>    
+                  <Helper>
+                   <RadzenRequiredValidator Component="FriendPhoto" Text="Photo is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Photo Description" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@friendPhoto.PhotoDescription" Name="PhotoDescription" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Date Taken" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="MM/dd/yyyy" style="display: block; width: 100%" @bind-Value="@friendPhoto.DateTaken" Name="DateTaken" />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+
